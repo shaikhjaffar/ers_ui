@@ -1,38 +1,160 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2{
+  color: #FFFFFF;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app{
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.rounded-t-5 {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.container{
+  width: 60%;
+}
+.main-section{
+  display: flex;
+  width: 100%;
+}
+.main {
+  width: 16%;
+  display: flex;
+  background-color: #784fe8;
+  align-items: baseline;
+  min-height: 100vh;
+}
+.full {
+  width: 100%;
+  list-style: none;
+  transition: 1s all;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+input[type="search"]{
+width: 100%;
+height: 24px;
+border-radius: 8px
+}
+.content-head{
+  display: grid;
+  grid-template-columns: 60% 15% 10% 15% ;
+  align-items: center;
+  margin-left: 20px;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  height: 100%;
+}
+.content-head p {
+  margin-bottom: 0;
+}
+.top-nav{
+  width: 100%;
+  height: 80px;
+  background-color: rgb(19, 18, 18);
+  display: flex;
+   align-items: center;
+   gap: 20px;
+}
+.logo-ds {
+  width: 15%;
+  margin-left: 20px;
+  height: 100%;
+}
+.main-content{
+  transition: all 0.5s ease 0s;
+  width: 80%;
+  height: 80px;
+}
+.pdetail{
+  transform: scale(0,0);
+  transition: 0.5s all;
+  width: 100%;
+}
+.pdetail span{
+display: flex;
+flex-direction: column;
+color: #FFFFFF;
+}
+.profileimg{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+.userConatiner{
+display: flex;
+cursor: pointer;
+position: absolute;
+margin-left: 85%;
+}
+ .full li {
+  width: 80%;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+justify-content: center;
+align-items: center;
+background-color: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.1);
+border-radius: .25rem;
+box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+color: rgba(0, 0, 0, 0.85);
+display: inline-flex;
+font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 1.25;
+margin: 0;
+min-height: 3rem;
+position: relative;
+text-decoration: none;
+transition: all 250ms;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+vertical-align: baseline;
+ }
+.full li:hover,
+.full li:focus {
+border-color: rgba(0, 0, 0, 0.15);
+box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+color: rgba(0, 0, 0, 0.65);
+}
+ul{
+  padding-left: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.full li:hover {
+transform: translateY(-1px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.full li:active {
+background-color: #F0F0F1;
+border-color: rgba(0, 0, 0, 0.15);
+box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+color: rgba(0, 0, 0, 0.65);
+transform: translateY(0);
+}
+.modal-body{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+@media (max-width: 550px) {
+  .rounded-tr-lg-0 {
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0rem;
   }
 }
