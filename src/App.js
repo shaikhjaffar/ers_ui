@@ -10,9 +10,9 @@ function App() {
     <>
     <Routes>
    <Route  path='/ers_ui' element={ <Login/>} />
-   <Route path='/Admin' element={<AdminDashboard/>} />
-   <Route path='/profilePage/:id' element={<ProfilePage/>} />
-   <Route path='/Employee' element={<Employee/>} />
+   <Route path='/ers_ui/Admin' element={<AdminDashboard/>} />
+   <Route path='/ers_ui/profilePage/:id' element={<ProfilePage/>} />
+   <Route path='/ers_ui/Employee' element={<Employee/>} />
    <Route>404 Not Found</Route>
    </Routes>
     </>

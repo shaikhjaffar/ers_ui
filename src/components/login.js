@@ -40,10 +40,10 @@ function Login() {
          if (res.status === 200){
            dispatch(fetch_data_success(res.data))
            if (res.data.employee.Designation === "Admin"){
-             navigate('/Admin')
+             navigate('/ers_ui/Admin')
            }
            else {
-               navigate('/employee')
+               navigate('/ers_ui/employee')
            }
          }
      

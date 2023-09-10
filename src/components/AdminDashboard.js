@@ -108,7 +108,7 @@ export default function AdminDashboard() {
         <div className="pdetail" id="detail">
           <span>{getdata.employee.name}</span>
           <span onClick={()=>{
-            navigate("/")
+            navigate("/ers_ui")
           }}>Logout</span>
         </div>
         </div>
@@ -145,7 +145,7 @@ export default function AdminDashboard() {
           <td>{emp.phone}</td>
           <td>{emp.Email}</td>
           <td onClick={()=>{
-           navigate(`/profilePage/${emp._id}`)
+           navigate(`/ers_ui/profilePage/${emp._id}`)
           }}><img width="25" height="25" src="https://img.icons8.com/ios/50/connection-sync.png" alt="connection-sync"/></td>
           <td onClick={()=>{
             deleteEmployee(emp._id)
