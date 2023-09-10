@@ -70,6 +70,11 @@ export default function AdminDashboard() {
              position:toast.POSITION.TOP_RIGHT
           })
          })
+         .catch(err => {
+          toast.error(err.response.data.message,{
+            position:toast.POSITION.TOP_RIGHT
+          })
+         })
        }
 
        function deleteEmployee(id){
@@ -118,10 +123,9 @@ export default function AdminDashboard() {
     <>
       <ToastContainer />
          <div className="top-nav">
-        {/* <img src={Profile} className="logo-ds" alt="logo"/> */}
         <h2 style={{marginLeft: "5%"}}>Admin Dashboard</h2>
         <div className="userConatiner" onMouseOver={showdetail} onMouseOut={Notshowdetail} >
-        <img src={`file:///C:/Users/91991/Desktop/AllProject/projects/ERS Backend/${getdata.employee.image}`} className="profileimg"  alt="profile"/>
+        <img src={getdata.employee.image} className="profileimg"  alt="profile"/>
         <div className="pdetail" id="detail">
           <span>{getdata.employee.name}</span>
           <span onClick={()=>{
