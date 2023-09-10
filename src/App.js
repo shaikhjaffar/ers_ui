@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <Routes>
-   <Route path='http://shaikhjaffar.github.io/ers_ui/' element={ <Login/>} />
+   <Route  index element={ <Login/>} />
    <Route path='/Admin' element={<AdminDashboard/>} />
    <Route path='/profilePage/:id' element={<ProfilePage/>} />
    <Route path='/Employee' element={<Employee/>} />
