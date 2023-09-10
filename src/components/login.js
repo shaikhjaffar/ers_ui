@@ -1,81 +1,135 @@
-import React from 'react';
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+import React, {useState} from 'react';
 import { LoginService } from '../service';
 import { useDispatch,useSelector } from 'react-redux';
 import { fetch_data_success } from './redux/action';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from 'bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import {
+  MDBContainer,
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabsContent,
+  MDBTabsPane,
+  MDBBtn,
+  MDBIcon,
+  MDBInput,
+  MDBCheckbox
+}
+from 'mdb-react-ui-kit';
 
 function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  
-  //const getdata = useSelector((state)=> state.profileReducer.data);
+  const [justifyActive, setJustifyActive] = useState('tab1');;
+
+  const handleJustifyClick = (value) => {
+    if (value === justifyActive) {
+      return;
+    }
+
+    setJustifyActive(value);
+  };
   const HandleSubmit =()=>{
-     const email = document.getElementById('form1').value
-     const password = document.getElementById('form2').value
-     LoginService(email,password)
-     .then(res =>{
-         
-          if (res.status === 200){
-            dispatch(fetch_data_success(res.data))
-            if (res.data.employee.Designation === "Admin"){
-              navigate('/Admin')
-            }
-            else {
-                navigate('/employee')
-            }
-          }
-      
+    const email = document.getElementById('form1').value
+    const password = document.getElementById('form2').value
+    LoginService(email,password)
+    .then(res =>{
+        
+         if (res.status === 200){
+           dispatch(fetch_data_success(res.data))
+           if (res.data.employee.Designation === "Admin"){
+             navigate('/Admin')
+           }
+           else {
+               navigate('/employee')
+           }
+         }
+     
+    })
+    .catch(err => {
+     toast.error(err.response.data.message,{
+       position:toast.POSITION.TOP_RIGHT
      })
-     .catch(err => {
-      toast.error(err.response.data.message,{
-        position:toast.POSITION.TOP_RIGHT
-      })
-     })
-   
-  }
+    })
+  
+ }
 
   return (
-    <MDBContainer className='my-3 g-0 d-flex align-items-center'>
-      <MDBCard>
-      <ToastContainer />
-        <MDBRow className='g-0 d-flex align-items-center'>
+    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+       <ToastContainer/>
+      <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
+            Login
+          </MDBTabsLink>
+        </MDBTabsItem>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+            Register
+          </MDBTabsLink>
+        </MDBTabsItem>
+      </MDBTabs>
 
-          <MDBCol md='4'>
-            <MDBCardImage src='https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg' alt='phone' className='rounded-t-5 rounded-tr-lg-0' fluid />
-          </MDBCol>
+      <MDBTabsContent>
 
-          <MDBCol md='8'>
+        <MDBTabsPane show={justifyActive === 'tab1'}>
 
-            <MDBCardBody>
 
-              <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-              <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
+          <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
+          <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
 
-            
+          <div className="d-flex justify-content-between mx-4 mb-4">
+            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+            <a href="!#">Forgot password?</a>
+          </div>
 
-              <MDBBtn className="mb-4 w-100" onClick={HandleSubmit}>Sign in</MDBBtn>
+          <MDBBtn className="mb-4 w-100" onClick={HandleSubmit}>Sign in</MDBBtn>
+          <p className="text-center">Not a member? <a href="#!">Register</a></p>
 
-            </MDBCardBody>
+        </MDBTabsPane>
 
-          </MDBCol>
+        <MDBTabsPane show={justifyActive === 'tab2'}>
 
-        </MDBRow>
+          <div className="text-center mb-3">
+            <p>Sign un with:</p>
 
-      </MDBCard>
+            <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='facebook-f' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='twitter' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='google' size="sm"/>
+              </MDBBtn>
+
+              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
+                <MDBIcon fab icon='github' size="sm"/>
+              </MDBBtn>
+            </div>
+
+            <p className="text-center mt-3">or:</p>
+          </div>
+
+          <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'/>
+          <MDBInput wrapperClass='mb-4' label='Username' id='form1' type='text'/>
+          <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email'/>
+          <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'/>
+
+          <div className='d-flex justify-content-center mb-4'>
+            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
+          </div>
+
+          <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
+
+        </MDBTabsPane>
+
+      </MDBTabsContent>
+
     </MDBContainer>
   );
 }

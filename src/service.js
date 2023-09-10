@@ -1,5 +1,5 @@
 import axios from "axios"
- const url = "http://localhost:5000"
+ const url = "https://ersapi.onrender.com"
 const LoginService = (email,password) => {
        return axios
         .post(`${url}/login`,{
@@ -44,6 +44,10 @@ const EmployeeService = {
       .post(`${url}/deletEmployee`,{
         "id":id
       })
+   },
+   uploadImage:function(data){
+    return axios
+    .post(`${url}/uploadImage`,data)
    }
 
 }

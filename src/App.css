@@ -7,6 +7,7 @@
 h2{
   color: #FFFFFF;
 }
+
 .app{
   width: 100%;
   display: flex;
@@ -151,6 +152,7 @@ transform: translateY(0);
   flex-direction: column;
   row-gap: 20px;
 }
+
 
 @media (max-width: 550px) {
   .rounded-tr-lg-0 {
