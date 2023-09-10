@@ -69,14 +69,14 @@ function Login() {
       }
       SingupService(Data)
        .then(res => {
-        handleJustifyClick('tab1')
         toast.success(res.data.message, {
           position: toast.POSITION.TOP_RIGHT
         });
+        handleJustifyClick('tab1')
        })
        
        .catch(err => {
-        toast.error(err, {
+        toast.error(err.data.message, {
           position: toast.POSITION.TOP_RIGHT
         });
        })
