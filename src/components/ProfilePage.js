@@ -49,9 +49,7 @@ export default function ProfilePage() {
      }
       function AssignedReview(){
        const assigId = document.getElementById('assigndrp').value
-       console.log(assigId)
        const assigName = document.getElementById('assigndrp')
-        console.log(assigName.options[assigName.selectedIndex].text)
          ReviewService.addReview({
           id:Data._id,
           Invigilator: assigId
@@ -60,7 +58,6 @@ export default function ProfilePage() {
           toast.success(`Review Assigned to ${assigName.options[assigName.selectedIndex].text}`,{
              position:toast.POSITION.TOP_RIGHT
           })
-          console.log(res.data)
          })
          .catch(err => {
           toast.error(err.response.data.message,{

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { EmployeeService } from '../service'
 import {ReviewService } from '../service';
 import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import {
     MDBBtn,
     MDBModal,
@@ -14,10 +14,6 @@ import {
     MDBModalBody,
     MDBModalFooter,
     MDBInput,
-    MDBCard,
-    MDBCardText,
-    MDBCardBody,
-    MDBCardImage,
   } from 'mdb-react-ui-kit';
 export default function ReviewBox(id) {
      const [Data,setData] = useState([])
@@ -35,8 +31,6 @@ export default function ReviewBox(id) {
       setaverage((r1+r2+r3)/3)
    } 
    function AddReview () {
-    
-      console.log(getdata)
     ReviewService.addReview({
       id : data._id,
         name:data.name,
@@ -64,10 +58,8 @@ export default function ReviewBox(id) {
 }
 
         useEffect(()=>{
-            console.log(id)
             EmployeeService.getAllEmployee()
             .then(res => {
-                  console.log(res.data)
               const filterData = res.data.filter(function (element){
                   if(element.Review.length !== 0 ){
                     if(element.Review[0].Invigilator === id.id){
@@ -76,7 +68,6 @@ export default function ReviewBox(id) {
                   }
               
               })
-               console.log(filterData)
                setData(filterData)
             })
             

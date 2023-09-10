@@ -22,14 +22,13 @@ import { fetch_All_data_ } from './redux/action';
 export default function AdminDashboard() {
    const dispatch = useDispatch()
     const getdata = useSelector((state)=> state.profileReducer.data);
-    const [file1, setFile] = useState(null);
+ 
     const [basicModal, setBasicModal] = useState(false);
-    const [filemodal,setfilemodal]= useState(false)
+
     const [data,setdata] = useState([])
     const navigate = useNavigate()
     const toggleShow = () => setBasicModal(!basicModal);
     
-      console.log(getdata)
       function showdetail (){
         const showdetail = document.getElementById('detail')
           showdetail.style.transform = "scale(1,1)"
@@ -37,9 +36,6 @@ export default function AdminDashboard() {
       function Notshowdetail (){
         const showdetail = document.getElementById('detail')
           showdetail.style.transform = "scale(0,0)"
-      }
-      const handleFileUpload = (event) => {
-        setFile(event.target.files[0]);
       }
       function getAllEmployee3 () {
         EmployeeService.getAllEmployee()
@@ -51,7 +47,6 @@ export default function AdminDashboard() {
           }
          setdata(res.data)
           dispatch(fetch_All_data_(res.data))
-         console.log(res.data)
         })
         .catch(err => {
          toast.error(err, {
@@ -60,22 +55,6 @@ export default function AdminDashboard() {
         })
       }
 
-       function UploadFile(){
-        var formdata = new FormData();
-        formdata.append("id",getdata.employee._id );
-        formdata.append("image", file1, document.getElementById("file").value);
-        EmployeeService.uploadImage(formdata)
-        .then(res => {
-          toast.success(res.data.message,{
-             position:toast.POSITION.TOP_RIGHT
-          })
-         })
-         .catch(err => {
-          toast.error(err.response.data.message,{
-            position:toast.POSITION.TOP_RIGHT
-          })
-         })
-       }
 
        function deleteEmployee(id){
          EmployeeService.deleteEmployee(id)
@@ -125,17 +104,12 @@ export default function AdminDashboard() {
          <div className="top-nav">
         <h2 style={{marginLeft: "5%"}}>Admin Dashboard</h2>
         <div className="userConatiner" onMouseOver={showdetail} onMouseOut={Notshowdetail} >
-        <img src={getdata.employee.image} className="profileimg"  alt="profile"/>
+        <img src={Profile} className="profileimg"  alt="profile"/>
         <div className="pdetail" id="detail">
           <span>{getdata.employee.name}</span>
           <span onClick={()=>{
             navigate("/")
           }}>Logout</span>
-          <span  onClick={()=>{
-           setfilemodal(!filemodal)
-          }}>
-            Update Profile
-          </span>
         </div>
         </div>
       
@@ -209,30 +183,6 @@ export default function AdminDashboard() {
               </MDBBtn>
               <MDBBtn onClick={()=>{
                 AddEmployee()
-              }}>Save changes</MDBBtn>
-            </MDBModalFooter>
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
-
-      <MDBModal show={filemodal} setShow={setfilemodal} tabIndex='-1'>
-        <MDBModalDialog>
-          <MDBModalContent>
-            <MDBModalHeader>
-              <MDBModalTitle>Update Employee</MDBModalTitle>
-              <MDBBtn className='btn-close' color='none' onClick={()=>{setfilemodal(!filemodal)}}></MDBBtn>
-            </MDBModalHeader>
-            <MDBModalBody>
-                                  <label class="form-label" for="image">Upload Image</label>
-            <MDBInput label='upload file' id='file' type='file'  onChange={handleFileUpload}/>
-            </MDBModalBody>
-
-            <MDBModalFooter>
-              <MDBBtn color='secondary' onClick={()=>{setfilemodal(!filemodal)}}>
-                Close
-              </MDBBtn>
-              <MDBBtn onClick={()=>{
-                UploadFile()
               }}>Save changes</MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>

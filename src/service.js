@@ -7,6 +7,10 @@ const LoginService = (email,password) => {
             "password":password
         })
 }
+const SingupService = (data) => {
+  return axios
+  .post(`${url}/singupUser`,data)
+}
 
 const EmployeeService = {
    getAllEmployee : function (){
@@ -68,4 +72,4 @@ const ReviewService = {
 }
 
 
-export {LoginService,EmployeeService,ReviewService}
+export {LoginService,EmployeeService,ReviewService,SingupService}
